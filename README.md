@@ -3,7 +3,7 @@
 
 ## Introduction
 
-In this last lab, we will implement a a movie recommendation system using ALS in Spark programming environment. Spark's machine learning libraray `ml` comes packaged with a very efficient imeplementation of ALS algorithm that we looked at in the previous lesson. The lab will require you to put into pratice your spark programming skills for creating and manipulating pyspark DataFrames. We will go through a step-by-step process into developing a movie recommendation system using ALS and pyspark using the MovieLens Dataset that we used in a previous lab.
+In this last lab, we will implement a movie recommendation system using ALS in Spark programming environment. Spark's machine learning library `ml` comes packaged with a very efficient implementation of the ALS algorithm that we looked at in the previous lesson. The lab will require you to put into practice your spark programming skills for creating and manipulating pyspark DataFrames. We will go through a step-by-step process into developing a movie recommendation system using ALS and pyspark using the MovieLens Dataset that we used in a previous lab.
 
 Note: You are advised to refer to [PySpark Documentation](http://spark.apache.org/docs/2.2.0/api/python/index.html) heavily for completing this lab as it will introduce a few new methods. 
 
@@ -12,27 +12,27 @@ Note: You are advised to refer to [PySpark Documentation](http://spark.apache.or
 
 You will be able to:
 
-* Demonstrate an understanding on how recommendation systems are being used for personalization of online services/products
+* Demonstrate an understanding of how recommendation systems are being used for personalization of online services/products
 * Parse and filter datasets into Spark RDDs, performing basic feature selection
 * Run a brief hyper-parameter selection activity through a scalable grid search
-* Train and evaluate the predictive performance of recommendation system
+* Train and evaluate the predictive performance of a recommendation system
 * Generate predictions from the trained model
 
 ## Building a Recommendation System
 
-We have seen how recommender/Recommendation Systems have played an  integral parts in the success of Amazon (Books, Items), Pandora/Spotify (Music), Google (News, Search), YouTube (Videos) etc.  For Amazon these systems bring more than 30% of their total revenues. For Netflix service, 75% of movies that people watch are based on some sort of recommendation.
+We have seen how Recommendation Systems have played an  integral part in the success of Amazon (Books, Items), Pandora/Spotify (Music), Google (News, Search), YouTube (Videos) etc.  For Amazon, these systems bring more than 30% of their total revenues. For Netflix service, 75% of movies that people watch are based on some sort of recommendation.
 
 > The goal of Recommendation Systems is to find what is likely to be of interest to the user. This enables organizations to offer a high level of personalization and customer tailored services.
 
 
-For online video content services like Netflix and Hulu, the need to build robust movie recommendation systems is extremely important. An example of recommendation system is such as this:
+For online video content services like Netflix and Hulu, the need to build robust movie recommendation systems is extremely important. An example of a recommendation system is such as this:
 
 1.    User A watches Game of Thrones and Breaking Bad.
 2.    User B performs a search query for Game of Thrones.
 3.    The system suggests Breaking Bad to user B from data collected about user A.
 
 
-This lab will guide you through a step-by-step process into developing such a movie recommendation system. We will use the MovieLens dataset to build a movie recommendation system using the collaborative filtering technique with Spark's Alternating Least Saqures implementation. After building that recommendation system, we will go through the process of adding a new user to the dataset with some new ratings and obtaining new recommendations for that user.
+This lab will guide you through a step-by-step process into developing such a movie recommendation system. We will use the MovieLens dataset to build a movie recommendation system using the collaborative filtering technique with Spark's Alternating Least Squares implementation. After building that recommendation system, we will go through the process of adding a new user to the dataset with some new ratings and obtaining new recommendations for that user.
 
 ### Importing the Data
 To begin with:
@@ -105,7 +105,7 @@ from pyspark.ml.recommendation import ALS
 
 Now you've fit the model, and it's time to evaluate it to determine just how well it performed.
 
-* import `RegressionEvalutor` from pyspark.ml.evaluation
+* import the RegressionEvalutor from pyspark.ml.evaluation
 * generate predictions with your model for the test set by using the `transform` method on your ALS model
 * evaluate your model and print out the RMSE from your test set
 
@@ -149,7 +149,7 @@ from pyspark.ml.tuning import CrossValidator, ParamGridBuilder
 
 ### Incorporating the names of the movies
 
-When we make recommendations, it would be ideal if we could have the actual name of the movie be used rather than just an ID. There is another file called './data/movies.csv' that contains all of the names of the movies matched up to the movie_id that we have in the ratings dataset.
+When we make recommendations, it would be ideal if we could have the actual name of the movie used rather than just an ID. There is another file called './data/movies.csv' that contains all of the names of the movies matched up to the movie_id that we have in the ratings dataset.
 
 * import the data into a Spark DataFrame
 * look at the first 5 rows
@@ -243,7 +243,7 @@ The function should take in the parameters:
 * movie_title_df : spark DF containing movie titles
 * num_recs : int
 
-Rate these new movies
+Rate new movies
 
 ```python
 [Row(movieId=3253, title="Wayne's World (1992)", genres='Comedy'),
@@ -312,4 +312,4 @@ So here we have it! Our recommendation system is generating recommendations for 
 
 ## Summary
 
-In this lab, we learned how to build a model using Spark, how to perform some parameter selection, and how to update the model every time that new user preferences come in. We looked at how Spark's ALS implementation can be be used to build a scalable and efficient recommendation system. We also saw that such systems can become computationally expensive and using them with an online system could be a problem with traditional computational platforms. Spark's distributed computing architecture provides a great solution to deploy such recommendation systems for real world applications (think Amazon, Spotify).
+In this lab, we learned how to build a model using Spark, how to perform some parameter selection, and how to update the model every time that new user preferences come in. We looked at how Spark's ALS implementation can be used to build a scalable and efficient recommendation system. We also saw that such systems can become computationally expensive and using them with an online system could be a problem with traditional computational platforms. Spark's distributed computing architecture provides a great solution to deploy such recommendation systems for real-world applications (think Amazon, Spotify).
